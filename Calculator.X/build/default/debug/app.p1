@@ -1,0 +1,1921 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"24 ./ECU-Layer/LED/ecu_led.h
+[; ;./ECU-Layer/LED/ecu_led.h: 24: typedef struct{
+[s S274 :4 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S274 . port pin led_status ]
+"34 ./app.h
+[; ;./app.h: 34: led_t led = {.port = PORTC_INDEX, .pin = PIN2, .led_status = LED_OFF};
+[c E2998 0 1 2 3 4 .. ]
+[n E2998 . PORTA_INDEX PORTB_INDEX PORTC_INDEX PORTD_INDEX PORTE_INDEX  ]
+[c E2988 0 1 2 3 4 5 6 7 .. ]
+[n E2988 . PIN0 PIN1 PIN2 PIN3 PIN4 PIN5 PIN6 PIN7  ]
+[c E3039 0 1 .. ]
+[n E3039 . LED_OFF LED_ON  ]
+"65 ./ECU-Layer/KEYPAD/../../MCAL_Layer/GPIO/hal_gpio.h
+[s S273 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S273 . port pin direction logic ]
+"36 ./app.h
+[; ;./app.h: 36: button_t button = {.button_connection = BUTTON_ACTIVE_HIGH, .button_state = BUTTON_RELEASED, .button_pin.port = PORTB_INDEX, .button_pin.pin = PIN0, .button_pin.direction = INPUT, .button_pin.logic = LOW};
+[c E3056 0 1 .. ]
+[n E3056 . BUTTON_RELEASED BUTTON_PRESSED  ]
+[c E3060 0 1 .. ]
+[n E3060 . BUTTON_ACTIVE_HIGH BUTTON_ACTIVE_LOW  ]
+"28 ./ECU-Layer/BUTTON/ecu_button.h
+[; ;./ECU-Layer/BUTTON/ecu_button.h: 28: typedef struct{
+[s S275 `S273 1 `E3056 1 `E3060 1 ]
+[n S275 . button_pin button_state button_connection ]
+"36 ./app.h
+[; ;./app.h: 36: button_t button = {.button_connection = BUTTON_ACTIVE_HIGH, .button_state = BUTTON_RELEASED, .button_pin.port = PORTB_INDEX, .button_pin.pin = PIN0, .button_pin.direction = INPUT, .button_pin.logic = LOW};
+[c E2984 0 1 .. ]
+[n E2984 . OUTPUT INPUT  ]
+[c E2980 0 1 .. ]
+[n E2980 . LOW HIGH  ]
+"37 ./ECU-Layer/LCD/ecu_lcd.h
+[; ;./ECU-Layer/LCD/ecu_lcd.h: 37: typedef struct{
+[s S276 `S273 -> 4 `i `S273 1 `S273 1 ]
+[n S276 . Dx Rs E ]
+"21 ./ECU-Layer/KEYPAD/ecu_keypad.h
+[; ;./ECU-Layer/KEYPAD/ecu_keypad.h: 21: typedef struct{
+[s S278 `S273 -> 4 `i `S273 -> 4 `i ]
+[n S278 . keypad_cols_pins keypad_rows_pins ]
+[p mainexit ]
+"51 ./ECU-Layer/LCD/ecu_lcd.h
+[; ;./ECU-Layer/LCD/ecu_lcd.h: 51: Std_ReturnType lcd_4bit_initi(const lcd_4bit_t* LCD);
+[v _lcd_4bit_initi `(uc ~T0 @X0 0 ef1`*CS276 ]
+"28 ./ECU-Layer/KEYPAD/ecu_keypad.h
+[; ;./ECU-Layer/KEYPAD/ecu_keypad.h: 28: Std_ReturnType keypad_initi(const keypad_t* keypad);
+[v _keypad_initi `(uc ~T0 @X0 0 ef1`*CS278 ]
+"35 ./ECU-Layer/BUTTON/ecu_button.h
+[; ;./ECU-Layer/BUTTON/ecu_button.h: 35: Std_ReturnType button_initialize(const button_t *btn);
+[v _button_initialize `(uc ~T0 @X0 0 ef1`*CS275 ]
+"55 ./ECU-Layer/LCD/ecu_lcd.h
+[; ;./ECU-Layer/LCD/ecu_lcd.h: 55: Std_ReturnType lcd_4bit_print_string(const lcd_4bit_t* LCD, uint8 *Str);
+[v _lcd_4bit_print_string `(uc ~T0 @X0 0 ef2`*CS276`*uc ]
+[v F2948 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8\pic\include\builtins.h
+[v __delay `JF2948 ~T0 @X0 0 e ]
+[p i __delay ]
+"52 ./ECU-Layer/LCD/ecu_lcd.h
+[; ;./ECU-Layer/LCD/ecu_lcd.h: 52: Std_ReturnType lcd_4bit_send_command(const lcd_4bit_t* LCD, uint8 command);
+[v _lcd_4bit_send_command `(uc ~T0 @X0 0 ef2`*CS276`uc ]
+"36 ./ECU-Layer/BUTTON/ecu_button.h
+[; ;./ECU-Layer/BUTTON/ecu_button.h: 36: Std_ReturnType button_read_state(const button_t *btn, button_state_t *btn_state);
+[v _button_read_state `(uc ~T0 @X0 0 ef2`*CS275`*E3056 ]
+"29 ./ECU-Layer/KEYPAD/ecu_keypad.h
+[; ;./ECU-Layer/KEYPAD/ecu_keypad.h: 29: Std_ReturnType keypad_get_value(const keypad_t* keypad, uint8* value);
+[v _keypad_get_value `(uc ~T0 @X0 0 ef2`*CS278`*uc ]
+"29 ./app.h
+[; ;./app.h: 29: void mode_select_menu(void);
+[v _mode_select_menu `(v ~T0 @X0 0 ef ]
+"27
+[; ;./app.h: 27: void print_numbers(void);
+[v _print_numbers `(v ~T0 @X0 0 ef ]
+"53 ./ECU-Layer/LCD/ecu_lcd.h
+[; ;./ECU-Layer/LCD/ecu_lcd.h: 53: Std_ReturnType lcd_4bit_print_char(const lcd_4bit_t* LCD, uint8 data);
+[v _lcd_4bit_print_char `(uc ~T0 @X0 0 ef2`*CS276`uc ]
+"28 ./app.h
+[; ;./app.h: 28: void calculate_results_decimal(void);
+[v _calculate_results_decimal `(v ~T0 @X0 0 ef ]
+"30
+[; ;./app.h: 30: void calculate_results_binary_octal(void);
+[v _calculate_results_binary_octal `(v ~T0 @X0 0 ef ]
+"54 ./ECU-Layer/LCD/ecu_lcd.h
+[; ;./ECU-Layer/LCD/ecu_lcd.h: 54: Std_ReturnType lcd_4bit_set_cursor(const lcd_4bit_t* LCD, uint8 Cols, uint8 Rows);
+[v _lcd_4bit_set_cursor `(uc ~T0 @X0 0 ef3`*CS276`uc`uc ]
+"56
+[; ;./ECU-Layer/LCD/ecu_lcd.h: 56: Std_ReturnType lcd_4bit_print_int(const lcd_4bit_t* LCD, uint64 value);
+[v _lcd_4bit_print_int `(uc ~T0 @X0 0 ef2`*CS276`uo ]
+"31 ./app.h
+[; ;./app.h: 31: uint16 a_power_b(uint8 a, uint8 b);
+[v _a_power_b `(ui ~T0 @X0 0 ef2`uc`uc ]
+"54 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18Fxxxx_DFP/1.4.151/xc8\pic\include\proc\pic18f4620.h
+[; <" PORTA equ 0F80h ;# ">
+"191
+[; <" PORTB equ 0F81h ;# ">
+"362
+[; <" PORTC equ 0F82h ;# ">
+"537
+[; <" PORTD equ 0F83h ;# ">
+"679
+[; <" PORTE equ 0F84h ;# ">
+"882
+[; <" LATA equ 0F89h ;# ">
+"994
+[; <" LATB equ 0F8Ah ;# ">
+"1106
+[; <" LATC equ 0F8Bh ;# ">
+"1218
+[; <" LATD equ 0F8Ch ;# ">
+"1330
+[; <" LATE equ 0F8Dh ;# ">
+"1382
+[; <" TRISA equ 0F92h ;# ">
+"1387
+[; <" DDRA equ 0F92h ;# ">
+"1604
+[; <" TRISB equ 0F93h ;# ">
+"1609
+[; <" DDRB equ 0F93h ;# ">
+"1826
+[; <" TRISC equ 0F94h ;# ">
+"1831
+[; <" DDRC equ 0F94h ;# ">
+"2048
+[; <" TRISD equ 0F95h ;# ">
+"2053
+[; <" DDRD equ 0F95h ;# ">
+"2270
+[; <" TRISE equ 0F96h ;# ">
+"2275
+[; <" DDRE equ 0F96h ;# ">
+"2434
+[; <" OSCTUNE equ 0F9Bh ;# ">
+"2499
+[; <" PIE1 equ 0F9Dh ;# ">
+"2576
+[; <" PIR1 equ 0F9Eh ;# ">
+"2653
+[; <" IPR1 equ 0F9Fh ;# ">
+"2730
+[; <" PIE2 equ 0FA0h ;# ">
+"2796
+[; <" PIR2 equ 0FA1h ;# ">
+"2862
+[; <" IPR2 equ 0FA2h ;# ">
+"2928
+[; <" EECON1 equ 0FA6h ;# ">
+"2994
+[; <" EECON2 equ 0FA7h ;# ">
+"3001
+[; <" EEDATA equ 0FA8h ;# ">
+"3008
+[; <" EEADR equ 0FA9h ;# ">
+"3015
+[; <" EEADRH equ 0FAAh ;# ">
+"3022
+[; <" RCSTA equ 0FABh ;# ">
+"3027
+[; <" RCSTA1 equ 0FABh ;# ">
+"3232
+[; <" TXSTA equ 0FACh ;# ">
+"3237
+[; <" TXSTA1 equ 0FACh ;# ">
+"3488
+[; <" TXREG equ 0FADh ;# ">
+"3493
+[; <" TXREG1 equ 0FADh ;# ">
+"3500
+[; <" RCREG equ 0FAEh ;# ">
+"3505
+[; <" RCREG1 equ 0FAEh ;# ">
+"3512
+[; <" SPBRG equ 0FAFh ;# ">
+"3517
+[; <" SPBRG1 equ 0FAFh ;# ">
+"3524
+[; <" SPBRGH equ 0FB0h ;# ">
+"3531
+[; <" T3CON equ 0FB1h ;# ">
+"3643
+[; <" TMR3 equ 0FB2h ;# ">
+"3650
+[; <" TMR3L equ 0FB2h ;# ">
+"3657
+[; <" TMR3H equ 0FB3h ;# ">
+"3664
+[; <" CMCON equ 0FB4h ;# ">
+"3754
+[; <" CVRCON equ 0FB5h ;# ">
+"3833
+[; <" ECCP1AS equ 0FB6h ;# ">
+"3915
+[; <" PWM1CON equ 0FB7h ;# ">
+"3985
+[; <" BAUDCON equ 0FB8h ;# ">
+"3990
+[; <" BAUDCTL equ 0FB8h ;# ">
+"4157
+[; <" CCP2CON equ 0FBAh ;# ">
+"4236
+[; <" CCPR2 equ 0FBBh ;# ">
+"4243
+[; <" CCPR2L equ 0FBBh ;# ">
+"4250
+[; <" CCPR2H equ 0FBCh ;# ">
+"4257
+[; <" CCP1CON equ 0FBDh ;# ">
+"4354
+[; <" CCPR1 equ 0FBEh ;# ">
+"4361
+[; <" CCPR1L equ 0FBEh ;# ">
+"4368
+[; <" CCPR1H equ 0FBFh ;# ">
+"4375
+[; <" ADCON2 equ 0FC0h ;# ">
+"4446
+[; <" ADCON1 equ 0FC1h ;# ">
+"4531
+[; <" ADCON0 equ 0FC2h ;# ">
+"4650
+[; <" ADRES equ 0FC3h ;# ">
+"4657
+[; <" ADRESL equ 0FC3h ;# ">
+"4664
+[; <" ADRESH equ 0FC4h ;# ">
+"4671
+[; <" SSPCON2 equ 0FC5h ;# ">
+"4733
+[; <" SSPCON1 equ 0FC6h ;# ">
+"4803
+[; <" SSPSTAT equ 0FC7h ;# ">
+"5024
+[; <" SSPADD equ 0FC8h ;# ">
+"5031
+[; <" SSPBUF equ 0FC9h ;# ">
+"5038
+[; <" T2CON equ 0FCAh ;# ">
+"5109
+[; <" PR2 equ 0FCBh ;# ">
+"5114
+[; <" MEMCON equ 0FCBh ;# ">
+"5219
+[; <" TMR2 equ 0FCCh ;# ">
+"5226
+[; <" T1CON equ 0FCDh ;# ">
+"5329
+[; <" TMR1 equ 0FCEh ;# ">
+"5336
+[; <" TMR1L equ 0FCEh ;# ">
+"5343
+[; <" TMR1H equ 0FCFh ;# ">
+"5350
+[; <" RCON equ 0FD0h ;# ">
+"5483
+[; <" WDTCON equ 0FD1h ;# ">
+"5511
+[; <" HLVDCON equ 0FD2h ;# ">
+"5516
+[; <" LVDCON equ 0FD2h ;# ">
+"5781
+[; <" OSCCON equ 0FD3h ;# ">
+"5858
+[; <" T0CON equ 0FD5h ;# ">
+"5935
+[; <" TMR0 equ 0FD6h ;# ">
+"5942
+[; <" TMR0L equ 0FD6h ;# ">
+"5949
+[; <" TMR0H equ 0FD7h ;# ">
+"5956
+[; <" STATUS equ 0FD8h ;# ">
+"6027
+[; <" FSR2 equ 0FD9h ;# ">
+"6034
+[; <" FSR2L equ 0FD9h ;# ">
+"6041
+[; <" FSR2H equ 0FDAh ;# ">
+"6048
+[; <" PLUSW2 equ 0FDBh ;# ">
+"6055
+[; <" PREINC2 equ 0FDCh ;# ">
+"6062
+[; <" POSTDEC2 equ 0FDDh ;# ">
+"6069
+[; <" POSTINC2 equ 0FDEh ;# ">
+"6076
+[; <" INDF2 equ 0FDFh ;# ">
+"6083
+[; <" BSR equ 0FE0h ;# ">
+"6090
+[; <" FSR1 equ 0FE1h ;# ">
+"6097
+[; <" FSR1L equ 0FE1h ;# ">
+"6104
+[; <" FSR1H equ 0FE2h ;# ">
+"6111
+[; <" PLUSW1 equ 0FE3h ;# ">
+"6118
+[; <" PREINC1 equ 0FE4h ;# ">
+"6125
+[; <" POSTDEC1 equ 0FE5h ;# ">
+"6132
+[; <" POSTINC1 equ 0FE6h ;# ">
+"6139
+[; <" INDF1 equ 0FE7h ;# ">
+"6146
+[; <" WREG equ 0FE8h ;# ">
+"6158
+[; <" FSR0 equ 0FE9h ;# ">
+"6165
+[; <" FSR0L equ 0FE9h ;# ">
+"6172
+[; <" FSR0H equ 0FEAh ;# ">
+"6179
+[; <" PLUSW0 equ 0FEBh ;# ">
+"6186
+[; <" PREINC0 equ 0FECh ;# ">
+"6193
+[; <" POSTDEC0 equ 0FEDh ;# ">
+"6200
+[; <" POSTINC0 equ 0FEEh ;# ">
+"6207
+[; <" INDF0 equ 0FEFh ;# ">
+"6214
+[; <" INTCON3 equ 0FF0h ;# ">
+"6306
+[; <" INTCON2 equ 0FF1h ;# ">
+"6376
+[; <" INTCON equ 0FF2h ;# ">
+"6493
+[; <" PROD equ 0FF3h ;# ">
+"6500
+[; <" PRODL equ 0FF3h ;# ">
+"6507
+[; <" PRODH equ 0FF4h ;# ">
+"6514
+[; <" TABLAT equ 0FF5h ;# ">
+"6523
+[; <" TBLPTR equ 0FF6h ;# ">
+"6530
+[; <" TBLPTRL equ 0FF6h ;# ">
+"6537
+[; <" TBLPTRH equ 0FF7h ;# ">
+"6544
+[; <" TBLPTRU equ 0FF8h ;# ">
+"6553
+[; <" PCLAT equ 0FF9h ;# ">
+"6560
+[; <" PC equ 0FF9h ;# ">
+"6567
+[; <" PCL equ 0FF9h ;# ">
+"6574
+[; <" PCLATH equ 0FFAh ;# ">
+"6581
+[; <" PCLATU equ 0FFBh ;# ">
+"6588
+[; <" STKPTR equ 0FFCh ;# ">
+"6694
+[; <" TOS equ 0FFDh ;# ">
+"6701
+[; <" TOSL equ 0FFDh ;# ">
+"6708
+[; <" TOSH equ 0FFEh ;# ">
+"6715
+[; <" TOSU equ 0FFFh ;# ">
+"34 ./app.h
+[; ;./app.h: 34: led_t led = {.port = PORTC_INDEX, .pin = PIN2, .led_status = LED_OFF};
+[v _led `S274 ~T0 @X0 1 e ]
+[i _led
+:U ..
+:U ..
+-> . `E2998 2 `uc
+-> . `E2988 2 `uc
+-> . `E3039 0 `uc
+..
+..
+]
+"35
+[; ;./app.h: 35: led_t led1 = {.port = PORTB_INDEX, .pin = PIN7, .led_status = LED_OFF};
+[v _led1 `S274 ~T0 @X0 1 e ]
+[i _led1
+:U ..
+:U ..
+-> . `E2998 1 `uc
+-> . `E2988 7 `uc
+-> . `E3039 0 `uc
+..
+..
+]
+"36
+[; ;./app.h: 36: button_t button = {.button_connection = BUTTON_ACTIVE_HIGH, .button_state = BUTTON_RELEASED, .button_pin.port = PORTB_INDEX, .button_pin.pin = PIN0, .button_pin.direction = INPUT, .button_pin.logic = LOW};
+[v _button `S275 ~T0 @X0 1 e ]
+[i _button
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2998 1 `uc
+-> . `E2988 0 `uc
+-> . `E2984 1 `uc
+-> . `E2980 0 `uc
+..
+..
+. `E3056 0
+. `E3060 0
+..
+..
+]
+"37
+[; ;./app.h: 37: lcd_4bit_t lcd = {.Rs.pin = PIN4, .Rs.port = PORTC_INDEX, .Rs.direction = OUTPUT, .Rs.logic = LOW,.E.pin = PIN5, .E.port = PORTC_INDEX, .E.direction = OUTPUT, .E.logic = LOW, .Dx[0].pin = PIN0, .Dx[0].port = PORTC_INDEX, .Dx[0].direction = OUTPUT, .Dx[0].logic = LOW, .Dx[1].pin = PIN1, .Dx[1].port = PORTC_INDEX, .Dx[1].direction = OUTPUT, .Dx[1].logic = LOW, .Dx[2].pin = PIN2, .Dx[2].port = PORTC_INDEX, .Dx[2].direction = OUTPUT, .Dx[2].logic = LOW, .Dx[3].pin = PIN3, .Dx[3].port = PORTC_INDEX, .Dx[3].direction = OUTPUT, .Dx[3].logic = LOW};
+[v _lcd `S276 ~T0 @X0 1 e ]
+[i _lcd
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2998 2 `uc
+-> . `E2988 0 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 2 `uc
+-> . `E2988 1 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 2 `uc
+-> . `E2988 2 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 2 `uc
+-> . `E2988 3 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+..
+:U ..
+:U ..
+-> . `E2998 2 `uc
+-> . `E2988 4 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+..
+:U ..
+:U ..
+-> . `E2998 2 `uc
+-> . `E2988 5 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+..
+..
+..
+]
+"38
+[; ;./app.h: 38: keypad_t keypad = {.keypad_rows_pins[0].pin = PIN0, .keypad_rows_pins[0].port = PORTD_INDEX, .keypad_rows_pins[0].direction = OUTPUT, .keypad_rows_pins[0].logic = LOW,
+[v _keypad `S278 ~T0 @X0 1 e ]
+[i _keypad
+:U ..
+:U ..
+:U ..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 4 `uc
+-> . `E2984 1 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 5 `uc
+-> . `E2984 1 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 6 `uc
+-> . `E2984 1 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 7 `uc
+-> . `E2984 1 `uc
+-> . `E2980 0 `uc
+..
+..
+:U ..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 0 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 1 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 2 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+:U ..
+-> . `E2998 3 `uc
+-> . `E2988 3 `uc
+-> . `E2984 0 `uc
+-> . `E2980 0 `uc
+..
+..
+..
+..
+]
+"47
+[; ;./app.h: 47: Std_ReturnType ret;
+[v _ret `uc ~T0 @X0 1 e ]
+"48
+[; ;./app.h: 48: button_state_t button_state = BUTTON_RELEASED;
+[v _button_state `E3056 ~T0 @X0 1 e ]
+[i _button_state
+. `E3056 0
+]
+"49
+[; ;./app.h: 49: uint8 mode = '1';
+[v _mode `uc ~T0 @X0 1 e ]
+[i _mode
+-> -> 49 `ui `uc
+]
+"50
+[; ;./app.h: 50: uint8 key = 0, Operator;
+[v _key `uc ~T0 @X0 1 e ]
+[i _key
+-> -> 0 `i `uc
+]
+[v _Operator `uc ~T0 @X0 1 e ]
+"51
+[; ;./app.h: 51: uint64 Num1, Num2, Num;
+[v _Num1 `uo ~T0 @X0 1 e ]
+[v _Num2 `uo ~T0 @X0 1 e ]
+[v _Num `uo ~T0 @X0 1 e ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"13 app.c
+[; ;app.c: 13: int main() {
+[v _main `(i ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"14
+[; ;app.c: 14:     ret = lcd_4bit_initi(&lcd);
+[e = _ret ( _lcd_4bit_initi (1 -> &U _lcd `*CS276 ]
+"15
+[; ;app.c: 15:     ret = keypad_initi(&keypad);
+[e = _ret ( _keypad_initi (1 -> &U _keypad `*CS278 ]
+"16
+[; ;app.c: 16:     ret = button_initialize(&button);
+[e = _ret ( _button_initialize (1 -> &U _button `*CS275 ]
+"17
+[; ;app.c: 17:     ret = lcd_4bit_print_string(&lcd, "  Decimal Mode  ");
+[e = _ret ( _lcd_4bit_print_string (2 , -> &U _lcd `*CS276 :s 1C ]
+"18
+[; ;app.c: 18:     _delay((unsigned long)((1000)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"19
+[; ;app.c: 19:     ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"20
+[; ;app.c: 20:     while(1)
+[e :U 281 ]
+"21
+[; ;app.c: 21:     {
+{
+"22
+[; ;app.c: 22:         ret = button_read_state(&button, &button_state);
+[e = _ret ( _button_read_state (2 , -> &U _button `*CS275 &U _button_state ]
+"23
+[; ;app.c: 23:         ret = keypad_get_value(&keypad, &key);
+[e = _ret ( _keypad_get_value (2 , -> &U _keypad `*CS278 &U _key ]
+"24
+[; ;app.c: 24:         if(BUTTON_PRESSED == button_state)
+[e $ ! == -> . `E3056 1 `ui -> _button_state `ui 283  ]
+"25
+[; ;app.c: 25:         {
+{
+"26
+[; ;app.c: 26:             mode_select_menu();
+[e ( _mode_select_menu ..  ]
+"27
+[; ;app.c: 27:             _delay((unsigned long)((500)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"29
+[; ;app.c: 29:         }
+}
+[e $U 284  ]
+"30
+[; ;app.c: 30:         else { }
+[e :U 283 ]
+{
+}
+[e :U 284 ]
+"31
+[; ;app.c: 31:         if(key)
+[e $ ! != -> _key `i -> 0 `i 285  ]
+"32
+[; ;app.c: 32:         {
+{
+"33
+[; ;app.c: 33:             if('=' == Operator)
+[e $ ! == -> 61 `ui -> _Operator `ui 286  ]
+"34
+[; ;app.c: 34:             {
+{
+"35
+[; ;app.c: 35:                 Operator = 0; Num1 = 0; Num2 = 0; Num = 0;
+[e = _Operator -> -> 0 `i `uc ]
+[e = _Num1 -> -> -> 0 `i `o `uo ]
+[e = _Num2 -> -> -> 0 `i `o `uo ]
+[e = _Num -> -> -> 0 `i `o `uo ]
+"36
+[; ;app.c: 36:                 ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"37
+[; ;app.c: 37:                 _delay((unsigned long)((10)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"38
+[; ;app.c: 38:             }
+}
+[e $U 287  ]
+"39
+[; ;app.c: 39:             else { }
+[e :U 286 ]
+{
+}
+[e :U 287 ]
+"40
+[; ;app.c: 40:             print_numbers();
+[e ( _print_numbers ..  ]
+"41
+[; ;app.c: 41:             _delay((unsigned long)((500)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"42
+[; ;app.c: 42:         }
+}
+[e $U 288  ]
+"43
+[; ;app.c: 43:         else { }
+[e :U 285 ]
+{
+}
+[e :U 288 ]
+"45
+[; ;app.c: 45:     }
+}
+[e :U 280 ]
+[e $U 281  ]
+[e :U 282 ]
+"46
+[; ;app.c: 46:         return 0;
+[e ) -> 0 `i ]
+[e $UE 279  ]
+"47
+[; ;app.c: 47: }
+[e :UE 279 ]
+}
+"51
+[; ;app.c: 51: void print_numbers(void){
+[v _print_numbers `(v ~T0 @X0 1 ef ]
+{
+[e :U _print_numbers ]
+[f ]
+"52
+[; ;app.c: 52:     switch(key){
+[e $U 291  ]
+{
+"53
+[; ;app.c: 53:         case '1':
+[e :U 292 ]
+"54
+[; ;app.c: 54:             if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 293  ]
+"55
+[; ;app.c: 55:             {
+{
+"56
+[; ;app.c: 56:                 Num1 = 1 + (10*Num1);
+[e = _Num1 + -> -> -> 1 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"57
+[; ;app.c: 57:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"58
+[; ;app.c: 58:             }
+}
+[e $U 294  ]
+"59
+[; ;app.c: 59:             else
+[e :U 293 ]
+"60
+[; ;app.c: 60:             {
+{
+"61
+[; ;app.c: 61:                 Num2 = 1 + (10*Num2);
+[e = _Num2 + -> -> -> 1 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"62
+[; ;app.c: 62:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"63
+[; ;app.c: 63:             }
+}
+[e :U 294 ]
+"64
+[; ;app.c: 64:             break;
+[e $U 290  ]
+"65
+[; ;app.c: 65:         case '2':
+[e :U 295 ]
+"66
+[; ;app.c: 66:             if('1' == mode || '2' == mode)
+[e $ ! || == -> 49 `ui -> _mode `ui == -> 50 `ui -> _mode `ui 296  ]
+"67
+[; ;app.c: 67:             {
+{
+"68
+[; ;app.c: 68:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 297  ]
+"69
+[; ;app.c: 69:                 {
+{
+"70
+[; ;app.c: 70:                     Num1 = 2 + (10*Num1);
+[e = _Num1 + -> -> -> 2 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"71
+[; ;app.c: 71:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"72
+[; ;app.c: 72:                 }
+}
+[e $U 298  ]
+"73
+[; ;app.c: 73:                 else
+[e :U 297 ]
+"74
+[; ;app.c: 74:                 {
+{
+"75
+[; ;app.c: 75:                     Num2 = 2 + (10*Num2);
+[e = _Num2 + -> -> -> 2 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"76
+[; ;app.c: 76:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"77
+[; ;app.c: 77:                 }
+}
+[e :U 298 ]
+"78
+[; ;app.c: 78:             }
+}
+[e $U 299  ]
+"79
+[; ;app.c: 79:             else { }
+[e :U 296 ]
+{
+}
+[e :U 299 ]
+"80
+[; ;app.c: 80:             break;
+[e $U 290  ]
+"81
+[; ;app.c: 81:         case '3':
+[e :U 300 ]
+"82
+[; ;app.c: 82:             if('1' == mode || '2' == mode)
+[e $ ! || == -> 49 `ui -> _mode `ui == -> 50 `ui -> _mode `ui 301  ]
+"83
+[; ;app.c: 83:             {
+{
+"84
+[; ;app.c: 84:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 302  ]
+"85
+[; ;app.c: 85:                 {
+{
+"86
+[; ;app.c: 86:                     Num1 = 3 + (10*Num1);
+[e = _Num1 + -> -> -> 3 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"87
+[; ;app.c: 87:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"88
+[; ;app.c: 88:                 }
+}
+[e $U 303  ]
+"89
+[; ;app.c: 89:                 else
+[e :U 302 ]
+"90
+[; ;app.c: 90:                 {
+{
+"91
+[; ;app.c: 91:                     Num2 = 3 + (10*Num2);
+[e = _Num2 + -> -> -> 3 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"92
+[; ;app.c: 92:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"93
+[; ;app.c: 93:                 }
+}
+[e :U 303 ]
+"94
+[; ;app.c: 94:             }
+}
+[e $U 304  ]
+"95
+[; ;app.c: 95:             else { }
+[e :U 301 ]
+{
+}
+[e :U 304 ]
+"96
+[; ;app.c: 96:             break;
+[e $U 290  ]
+"97
+[; ;app.c: 97:         case '4':
+[e :U 305 ]
+"98
+[; ;app.c: 98:             if('1' == mode || '2' == mode)
+[e $ ! || == -> 49 `ui -> _mode `ui == -> 50 `ui -> _mode `ui 306  ]
+"99
+[; ;app.c: 99:             {
+{
+"100
+[; ;app.c: 100:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 307  ]
+"101
+[; ;app.c: 101:                 {
+{
+"102
+[; ;app.c: 102:                     Num1 = 4 + (10*Num1);
+[e = _Num1 + -> -> -> 4 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"103
+[; ;app.c: 103:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"104
+[; ;app.c: 104:                 }
+}
+[e $U 308  ]
+"105
+[; ;app.c: 105:                 else
+[e :U 307 ]
+"106
+[; ;app.c: 106:                 {
+{
+"107
+[; ;app.c: 107:                     Num2 = 4 + (10*Num2);
+[e = _Num2 + -> -> -> 4 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"108
+[; ;app.c: 108:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"109
+[; ;app.c: 109:                 }
+}
+[e :U 308 ]
+"110
+[; ;app.c: 110:             }
+}
+[e $U 309  ]
+"111
+[; ;app.c: 111:             else { }
+[e :U 306 ]
+{
+}
+[e :U 309 ]
+"112
+[; ;app.c: 112:             break;
+[e $U 290  ]
+"113
+[; ;app.c: 113:         case '5':
+[e :U 310 ]
+"114
+[; ;app.c: 114:             if('1' == mode || '2' == mode)
+[e $ ! || == -> 49 `ui -> _mode `ui == -> 50 `ui -> _mode `ui 311  ]
+"115
+[; ;app.c: 115:             {
+{
+"116
+[; ;app.c: 116:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 312  ]
+"117
+[; ;app.c: 117:                 {
+{
+"118
+[; ;app.c: 118:                     Num1 = 5 + (10*Num1);
+[e = _Num1 + -> -> -> 5 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"119
+[; ;app.c: 119:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"120
+[; ;app.c: 120:                 }
+}
+[e $U 313  ]
+"121
+[; ;app.c: 121:                 else
+[e :U 312 ]
+"122
+[; ;app.c: 122:                 {
+{
+"123
+[; ;app.c: 123:                     Num2 = 5 + (10*Num2);
+[e = _Num2 + -> -> -> 5 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"124
+[; ;app.c: 124:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"125
+[; ;app.c: 125:                 }
+}
+[e :U 313 ]
+"126
+[; ;app.c: 126:             }
+}
+[e $U 314  ]
+"127
+[; ;app.c: 127:             else { }
+[e :U 311 ]
+{
+}
+[e :U 314 ]
+"128
+[; ;app.c: 128:             break;
+[e $U 290  ]
+"129
+[; ;app.c: 129:         case '6':
+[e :U 315 ]
+"130
+[; ;app.c: 130:             if('1' == mode || '2' == mode)
+[e $ ! || == -> 49 `ui -> _mode `ui == -> 50 `ui -> _mode `ui 316  ]
+"131
+[; ;app.c: 131:             {
+{
+"132
+[; ;app.c: 132:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 317  ]
+"133
+[; ;app.c: 133:                 {
+{
+"134
+[; ;app.c: 134:                     Num1 = 6 + (10*Num1);
+[e = _Num1 + -> -> -> 6 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"135
+[; ;app.c: 135:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"136
+[; ;app.c: 136:                 }
+}
+[e $U 318  ]
+"137
+[; ;app.c: 137:                 else
+[e :U 317 ]
+"138
+[; ;app.c: 138:                 {
+{
+"139
+[; ;app.c: 139:                     Num2 = 6 + (10*Num2);
+[e = _Num2 + -> -> -> 6 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"140
+[; ;app.c: 140:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"141
+[; ;app.c: 141:                 }
+}
+[e :U 318 ]
+"142
+[; ;app.c: 142:             }
+}
+[e $U 319  ]
+"143
+[; ;app.c: 143:             else { }
+[e :U 316 ]
+{
+}
+[e :U 319 ]
+"144
+[; ;app.c: 144:             break;
+[e $U 290  ]
+"145
+[; ;app.c: 145:         case '7':
+[e :U 320 ]
+"146
+[; ;app.c: 146:             if('1' == mode || '2' == mode)
+[e $ ! || == -> 49 `ui -> _mode `ui == -> 50 `ui -> _mode `ui 321  ]
+"147
+[; ;app.c: 147:             {
+{
+"148
+[; ;app.c: 148:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 322  ]
+"149
+[; ;app.c: 149:                 {
+{
+"150
+[; ;app.c: 150:                     Num1 = 7 + (10*Num1);
+[e = _Num1 + -> -> -> 7 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"151
+[; ;app.c: 151:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"152
+[; ;app.c: 152:                 }
+}
+[e $U 323  ]
+"153
+[; ;app.c: 153:                 else
+[e :U 322 ]
+"154
+[; ;app.c: 154:                 {
+{
+"155
+[; ;app.c: 155:                     Num2 = 7 + (10*Num2);
+[e = _Num2 + -> -> -> 7 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"156
+[; ;app.c: 156:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"157
+[; ;app.c: 157:                 }
+}
+[e :U 323 ]
+"158
+[; ;app.c: 158:             }
+}
+[e $U 324  ]
+"159
+[; ;app.c: 159:             else { }
+[e :U 321 ]
+{
+}
+[e :U 324 ]
+"160
+[; ;app.c: 160:             break;
+[e $U 290  ]
+"161
+[; ;app.c: 161:         case '8':
+[e :U 325 ]
+"162
+[; ;app.c: 162:             if('1' == mode)
+[e $ ! == -> 49 `ui -> _mode `ui 326  ]
+"163
+[; ;app.c: 163:             {
+{
+"164
+[; ;app.c: 164:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 327  ]
+"165
+[; ;app.c: 165:                 {
+{
+"166
+[; ;app.c: 166:                     Num1 = 8 + (10*Num1);
+[e = _Num1 + -> -> -> 8 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"167
+[; ;app.c: 167:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"168
+[; ;app.c: 168:                 }
+}
+[e $U 328  ]
+"169
+[; ;app.c: 169:                 else
+[e :U 327 ]
+"170
+[; ;app.c: 170:                 {
+{
+"171
+[; ;app.c: 171:                     Num2 = 8 + (10*Num2);
+[e = _Num2 + -> -> -> 8 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"172
+[; ;app.c: 172:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"173
+[; ;app.c: 173:                 }
+}
+[e :U 328 ]
+"174
+[; ;app.c: 174:             }
+}
+[e $U 329  ]
+"175
+[; ;app.c: 175:             else { }
+[e :U 326 ]
+{
+}
+[e :U 329 ]
+"176
+[; ;app.c: 176:             break;
+[e $U 290  ]
+"177
+[; ;app.c: 177:         case '9':
+[e :U 330 ]
+"178
+[; ;app.c: 178:             if('1' == mode)
+[e $ ! == -> 49 `ui -> _mode `ui 331  ]
+"179
+[; ;app.c: 179:             {
+{
+"180
+[; ;app.c: 180:                 if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 332  ]
+"181
+[; ;app.c: 181:                 {
+{
+"182
+[; ;app.c: 182:                     Num1 = 9 + (10*Num1);
+[e = _Num1 + -> -> -> 9 `i `o `uo * -> -> -> 10 `i `o `uo _Num1 ]
+"183
+[; ;app.c: 183:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"184
+[; ;app.c: 184:                 }
+}
+[e $U 333  ]
+"185
+[; ;app.c: 185:                 else
+[e :U 332 ]
+"186
+[; ;app.c: 186:                 {
+{
+"187
+[; ;app.c: 187:                     Num2 = 9 + (10*Num2);
+[e = _Num2 + -> -> -> 9 `i `o `uo * -> -> -> 10 `i `o `uo _Num2 ]
+"188
+[; ;app.c: 188:                     ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"189
+[; ;app.c: 189:                 }
+}
+[e :U 333 ]
+"190
+[; ;app.c: 190:             }
+}
+[e $U 334  ]
+"191
+[; ;app.c: 191:             else { }
+[e :U 331 ]
+{
+}
+[e :U 334 ]
+"192
+[; ;app.c: 192:             break;
+[e $U 290  ]
+"193
+[; ;app.c: 193:         case '0':
+[e :U 335 ]
+"194
+[; ;app.c: 194:             if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 336  ]
+"195
+[; ;app.c: 195:             {
+{
+"196
+[; ;app.c: 196:                 Num1 = 10*Num1;
+[e = _Num1 * -> -> -> 10 `i `o `uo _Num1 ]
+"197
+[; ;app.c: 197:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"198
+[; ;app.c: 198:             }
+}
+[e $U 337  ]
+"199
+[; ;app.c: 199:             else
+[e :U 336 ]
+"200
+[; ;app.c: 200:             {
+{
+"201
+[; ;app.c: 201:                 Num2 = 10*Num2;
+[e = _Num2 * -> -> -> 10 `i `o `uo _Num2 ]
+"202
+[; ;app.c: 202:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"203
+[; ;app.c: 203:             }
+}
+[e :U 337 ]
+"204
+[; ;app.c: 204:             break;
+[e $U 290  ]
+"205
+[; ;app.c: 205:         case '/':
+[e :U 338 ]
+"206
+[; ;app.c: 206:             if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 339  ]
+"207
+[; ;app.c: 207:             {
+{
+"208
+[; ;app.c: 208:                 Operator = '/';
+[e = _Operator -> -> 47 `ui `uc ]
+"209
+[; ;app.c: 209:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"210
+[; ;app.c: 210:             }
+}
+[e $U 340  ]
+"211
+[; ;app.c: 211:             else
+[e :U 339 ]
+"212
+[; ;app.c: 212:             {
+{
+"214
+[; ;app.c: 214:             }
+}
+[e :U 340 ]
+"215
+[; ;app.c: 215:             break;
+[e $U 290  ]
+"216
+[; ;app.c: 216:         case '*':
+[e :U 341 ]
+"217
+[; ;app.c: 217:             if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 342  ]
+"218
+[; ;app.c: 218:             {
+{
+"219
+[; ;app.c: 219:                 Operator = '*';
+[e = _Operator -> -> 42 `ui `uc ]
+"220
+[; ;app.c: 220:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"221
+[; ;app.c: 221:             }
+}
+[e $U 343  ]
+"222
+[; ;app.c: 222:             else
+[e :U 342 ]
+"223
+[; ;app.c: 223:             {
+{
+"225
+[; ;app.c: 225:             }
+}
+[e :U 343 ]
+"226
+[; ;app.c: 226:             break;
+[e $U 290  ]
+"227
+[; ;app.c: 227:         case '-':
+[e :U 344 ]
+"228
+[; ;app.c: 228:             if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 345  ]
+"229
+[; ;app.c: 229:             {
+{
+"230
+[; ;app.c: 230:                 Operator = '-';
+[e = _Operator -> -> 45 `ui `uc ]
+"231
+[; ;app.c: 231:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"232
+[; ;app.c: 232:             }
+}
+[e $U 346  ]
+"233
+[; ;app.c: 233:             else
+[e :U 345 ]
+"234
+[; ;app.c: 234:             {
+{
+"236
+[; ;app.c: 236:             }
+}
+[e :U 346 ]
+"237
+[; ;app.c: 237:             break;
+[e $U 290  ]
+"238
+[; ;app.c: 238:         case '+':
+[e :U 347 ]
+"239
+[; ;app.c: 239:             if(!Operator)
+[e $ ! ! != -> _Operator `i -> 0 `i 348  ]
+"240
+[; ;app.c: 240:             {
+{
+"241
+[; ;app.c: 241:                 Operator = '+';
+[e = _Operator -> -> 43 `ui `uc ]
+"242
+[; ;app.c: 242:                 ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"243
+[; ;app.c: 243:             }
+}
+[e $U 349  ]
+"244
+[; ;app.c: 244:             else
+[e :U 348 ]
+"245
+[; ;app.c: 245:             {
+{
+"247
+[; ;app.c: 247:             }
+}
+[e :U 349 ]
+"248
+[; ;app.c: 248:             break;
+[e $U 290  ]
+"249
+[; ;app.c: 249:         case 'A':
+[e :U 350 ]
+"250
+[; ;app.c: 250:             ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"251
+[; ;app.c: 251:             Num1 = 0; Num2 = 0; Operator = 0;
+[e = _Num1 -> -> -> 0 `i `o `uo ]
+[e = _Num2 -> -> -> 0 `i `o `uo ]
+[e = _Operator -> -> 0 `i `uc ]
+"252
+[; ;app.c: 252:             break;
+[e $U 290  ]
+"253
+[; ;app.c: 253:         case '=':
+[e :U 351 ]
+"254
+[; ;app.c: 254:             ret = lcd_4bit_print_char(&lcd, key);
+[e = _ret ( _lcd_4bit_print_char (2 , -> &U _lcd `*CS276 _key ]
+"255
+[; ;app.c: 255:             if('1' == mode)
+[e $ ! == -> 49 `ui -> _mode `ui 352  ]
+"256
+[; ;app.c: 256:             {
+{
+"257
+[; ;app.c: 257:                 calculate_results_decimal();
+[e ( _calculate_results_decimal ..  ]
+"258
+[; ;app.c: 258:             }
+}
+[e $U 353  ]
+"259
+[; ;app.c: 259:             else
+[e :U 352 ]
+"260
+[; ;app.c: 260:             {
+{
+"261
+[; ;app.c: 261:                 calculate_results_binary_octal();
+[e ( _calculate_results_binary_octal ..  ]
+"262
+[; ;app.c: 262:             }
+}
+[e :U 353 ]
+"263
+[; ;app.c: 263:             Operator = '=';
+[e = _Operator -> -> 61 `ui `uc ]
+"264
+[; ;app.c: 264:             break;
+[e $U 290  ]
+"265
+[; ;app.c: 265:     }
+}
+[e $U 290  ]
+[e :U 291 ]
+[e [\ -> _key `i , $ -> -> 49 `ui `i 292
+ , $ -> -> 50 `ui `i 295
+ , $ -> -> 51 `ui `i 300
+ , $ -> -> 52 `ui `i 305
+ , $ -> -> 53 `ui `i 310
+ , $ -> -> 54 `ui `i 315
+ , $ -> -> 55 `ui `i 320
+ , $ -> -> 56 `ui `i 325
+ , $ -> -> 57 `ui `i 330
+ , $ -> -> 48 `ui `i 335
+ , $ -> -> 47 `ui `i 338
+ , $ -> -> 42 `ui `i 341
+ , $ -> -> 45 `ui `i 344
+ , $ -> -> 43 `ui `i 347
+ , $ -> -> 65 `ui `i 350
+ , $ -> -> 61 `ui `i 351
+ 290 ]
+[e :U 290 ]
+"266
+[; ;app.c: 266:     key = 0;
+[e = _key -> -> 0 `i `uc ]
+"267
+[; ;app.c: 267: }
+[e :UE 289 ]
+}
+"270
+[; ;app.c: 270: void calculate_results_decimal(void){
+[v _calculate_results_decimal `(v ~T0 @X0 1 ef ]
+{
+[e :U _calculate_results_decimal ]
+[f ]
+"271
+[; ;app.c: 271:     switch(Operator){
+[e $U 356  ]
+{
+"272
+[; ;app.c: 272:         case '+':
+[e :U 357 ]
+"273
+[; ;app.c: 273:             Num = Num1 + Num2;
+[e = _Num + _Num1 _Num2 ]
+"274
+[; ;app.c: 274:             ret = lcd_4bit_set_cursor(&lcd, 1, 2);
+[e = _ret ( _lcd_4bit_set_cursor (3 , , -> &U _lcd `*CS276 -> -> 1 `i `uc -> -> 2 `i `uc ]
+"275
+[; ;app.c: 275:             ret = lcd_4bit_print_int(&lcd, Num);
+[e = _ret ( _lcd_4bit_print_int (2 , -> &U _lcd `*CS276 _Num ]
+"276
+[; ;app.c: 276:             break;
+[e $U 355  ]
+"277
+[; ;app.c: 277:         case '-':
+[e :U 358 ]
+"278
+[; ;app.c: 278:             Num = Num1 - Num2;
+[e = _Num - _Num1 _Num2 ]
+"279
+[; ;app.c: 279:             ret = lcd_4bit_set_cursor(&lcd, 1, 2);
+[e = _ret ( _lcd_4bit_set_cursor (3 , , -> &U _lcd `*CS276 -> -> 1 `i `uc -> -> 2 `i `uc ]
+"280
+[; ;app.c: 280:             ret = lcd_4bit_print_int(&lcd, Num);
+[e = _ret ( _lcd_4bit_print_int (2 , -> &U _lcd `*CS276 _Num ]
+"281
+[; ;app.c: 281:             break;
+[e $U 355  ]
+"282
+[; ;app.c: 282:         case '*':
+[e :U 359 ]
+"283
+[; ;app.c: 283:             Num = Num1 * Num2;
+[e = _Num * _Num1 _Num2 ]
+"284
+[; ;app.c: 284:             ret = lcd_4bit_set_cursor(&lcd, 1, 2);
+[e = _ret ( _lcd_4bit_set_cursor (3 , , -> &U _lcd `*CS276 -> -> 1 `i `uc -> -> 2 `i `uc ]
+"285
+[; ;app.c: 285:             ret = lcd_4bit_print_int(&lcd, Num);
+[e = _ret ( _lcd_4bit_print_int (2 , -> &U _lcd `*CS276 _Num ]
+"286
+[; ;app.c: 286:             break;
+[e $U 355  ]
+"287
+[; ;app.c: 287:         case '/':
+[e :U 360 ]
+"288
+[; ;app.c: 288:             Num = Num1 / Num2;
+[e = _Num / _Num1 _Num2 ]
+"289
+[; ;app.c: 289:             ret = lcd_4bit_set_cursor(&lcd, 1, 2);
+[e = _ret ( _lcd_4bit_set_cursor (3 , , -> &U _lcd `*CS276 -> -> 1 `i `uc -> -> 2 `i `uc ]
+"290
+[; ;app.c: 290:             ret = lcd_4bit_print_int(&lcd, Num);
+[e = _ret ( _lcd_4bit_print_int (2 , -> &U _lcd `*CS276 _Num ]
+"291
+[; ;app.c: 291:             break;
+[e $U 355  ]
+"292
+[; ;app.c: 292:     }
+}
+[e $U 355  ]
+[e :U 356 ]
+[e [\ -> _Operator `i , $ -> -> 43 `ui `i 357
+ , $ -> -> 45 `ui `i 358
+ , $ -> -> 42 `ui `i 359
+ , $ -> -> 47 `ui `i 360
+ 355 ]
+[e :U 355 ]
+"293
+[; ;app.c: 293: }
+[e :UE 354 ]
+}
+"296
+[; ;app.c: 296: void mode_select_menu(void){
+[v _mode_select_menu `(v ~T0 @X0 1 ef ]
+{
+[e :U _mode_select_menu ]
+[f ]
+"297
+[; ;app.c: 297:     key = 0; Num1 = 0; Num2 = 0; Num = 0;
+[e = _key -> -> 0 `i `uc ]
+[e = _Num1 -> -> -> 0 `i `o `uo ]
+[e = _Num2 -> -> -> 0 `i `o `uo ]
+[e = _Num -> -> -> 0 `i `o `uo ]
+"298
+[; ;app.c: 298:     ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"299
+[; ;app.c: 299:     _delay((unsigned long)((10)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"300
+[; ;app.c: 300:     ret = lcd_4bit_print_string(&lcd, "1- Dec   2- Oct");
+[e = _ret ( _lcd_4bit_print_string (2 , -> &U _lcd `*CS276 :s 2C ]
+"301
+[; ;app.c: 301:     ret = lcd_4bit_set_cursor(&lcd, 1, 2);
+[e = _ret ( _lcd_4bit_set_cursor (3 , , -> &U _lcd `*CS276 -> -> 1 `i `uc -> -> 2 `i `uc ]
+"302
+[; ;app.c: 302:     ret = lcd_4bit_print_string(&lcd, "     3- Bin");
+[e = _ret ( _lcd_4bit_print_string (2 , -> &U _lcd `*CS276 :s 3C ]
+"303
+[; ;app.c: 303:     while(!('1' == key || '2' == key || '3' == key))
+[e $U 362  ]
+[e :U 363 ]
+"304
+[; ;app.c: 304:     {
+{
+"305
+[; ;app.c: 305:         ret = keypad_get_value(&keypad, &key);
+[e = _ret ( _keypad_get_value (2 , -> &U _keypad `*CS278 &U _key ]
+"306
+[; ;app.c: 306:     }
+}
+[e :U 362 ]
+"303
+[; ;app.c: 303:     while(!('1' == key || '2' == key || '3' == key))
+[e $ ! || || == -> 49 `ui -> _key `ui == -> 50 `ui -> _key `ui == -> 51 `ui -> _key `ui 363  ]
+[e :U 364 ]
+"307
+[; ;app.c: 307:     switch(key){
+[e $U 366  ]
+{
+"308
+[; ;app.c: 308:         case '1':
+[e :U 367 ]
+"309
+[; ;app.c: 309:             mode = '1';
+[e = _mode -> -> 49 `ui `uc ]
+"310
+[; ;app.c: 310:             ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"311
+[; ;app.c: 311:             _delay((unsigned long)((10)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"312
+[; ;app.c: 312:             ret = lcd_4bit_print_string(&lcd, "  Decimal Mode  ");
+[e = _ret ( _lcd_4bit_print_string (2 , -> &U _lcd `*CS276 :s 4C ]
+"313
+[; ;app.c: 313:         case '2':
+[e :U 368 ]
+"314
+[; ;app.c: 314:             mode = '2';
+[e = _mode -> -> 50 `ui `uc ]
+"315
+[; ;app.c: 315:             ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"316
+[; ;app.c: 316:             _delay((unsigned long)((10)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"317
+[; ;app.c: 317:             ret = lcd_4bit_print_string(&lcd, "   Octal Mode   ");
+[e = _ret ( _lcd_4bit_print_string (2 , -> &U _lcd `*CS276 :s 5C ]
+"318
+[; ;app.c: 318:             break;
+[e $U 365  ]
+"319
+[; ;app.c: 319:         case '3':
+[e :U 369 ]
+"320
+[; ;app.c: 320:             mode = '3';
+[e = _mode -> -> 51 `ui `uc ]
+"321
+[; ;app.c: 321:             ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"322
+[; ;app.c: 322:             _delay((unsigned long)((10)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"323
+[; ;app.c: 323:             ret = lcd_4bit_print_string(&lcd, "  Binary Mode  ");
+[e = _ret ( _lcd_4bit_print_string (2 , -> &U _lcd `*CS276 :s 6C ]
+"324
+[; ;app.c: 324:             break;
+[e $U 365  ]
+"325
+[; ;app.c: 325:     }
+}
+[e $U 365  ]
+[e :U 366 ]
+[e [\ -> _key `i , $ -> -> 49 `ui `i 367
+ , $ -> -> 50 `ui `i 368
+ , $ -> -> 51 `ui `i 369
+ 365 ]
+[e :U 365 ]
+"326
+[; ;app.c: 326:     _delay((unsigned long)((1000)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"327
+[; ;app.c: 327:     ret = lcd_4bit_send_command(&lcd, 0x01);
+[e = _ret ( _lcd_4bit_send_command (2 , -> &U _lcd `*CS276 -> -> 1 `i `uc ]
+"328
+[; ;app.c: 328:     _delay((unsigned long)((10)*(4000000UL/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+"329
+[; ;app.c: 329:     key = 0;
+[e = _key -> -> 0 `i `uc ]
+"330
+[; ;app.c: 330: }
+[e :UE 361 ]
+}
+"332
+[; ;app.c: 332: void calculate_results_binary_octal(void)
+[v _calculate_results_binary_octal `(v ~T0 @X0 1 ef ]
+"333
+[; ;app.c: 333: {
+{
+[e :U _calculate_results_binary_octal ]
+[f ]
+"334
+[; ;app.c: 334:     uint64 temp = Num1;
+[v _temp `uo ~T0 @X0 1 a ]
+[e = _temp _Num1 ]
+"335
+[; ;app.c: 335:     uint16 Dec1 = 0, Dec2 = 0;
+[v _Dec1 `ui ~T0 @X0 1 a ]
+[e = _Dec1 -> -> 0 `i `ui ]
+[v _Dec2 `ui ~T0 @X0 1 a ]
+[e = _Dec2 -> -> 0 `i `ui ]
+"336
+[; ;app.c: 336:     uint8 remainder = 0, i = 0;
+[v _remainder `uc ~T0 @X0 1 a ]
+[e = _remainder -> -> 0 `i `uc ]
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+"337
+[; ;app.c: 337:     while(temp)
+[e $U 371  ]
+[e :U 372 ]
+"338
+[; ;app.c: 338:     {
+{
+"339
+[; ;app.c: 339:       remainder = temp%10;
+[e = _remainder -> % _temp -> -> -> 10 `i `o `uo `uc ]
+"340
+[; ;app.c: 340:       temp /= 10;
+[e =/ _temp -> -> -> 10 `i `o `uo ]
+"341
+[; ;app.c: 341:       if('3' == mode)
+[e $ ! == -> 51 `ui -> _mode `ui 374  ]
+"342
+[; ;app.c: 342:         {
+{
+"343
+[; ;app.c: 343:             Dec1 += remainder * a_power_b(2, i);
+[e =+ _Dec1 * -> _remainder `ui ( _a_power_b (2 , -> -> 2 `i `uc _i ]
+"344
+[; ;app.c: 344:         }
+}
+[e $U 375  ]
+"345
+[; ;app.c: 345:         else
+[e :U 374 ]
+"346
+[; ;app.c: 346:         {
+{
+"347
+[; ;app.c: 347:             Dec1 += remainder * a_power_b(8, i);
+[e =+ _Dec1 * -> _remainder `ui ( _a_power_b (2 , -> -> 8 `i `uc _i ]
+"348
+[; ;app.c: 348:         }
+}
+[e :U 375 ]
+"349
+[; ;app.c: 349:       ++i;
+[e =+ _i -> -> 1 `i `uc ]
+"350
+[; ;app.c: 350:     }
+}
+[e :U 371 ]
+"337
+[; ;app.c: 337:     while(temp)
+[e $ != _temp -> -> -> 0 `i `o `uo 372  ]
+[e :U 373 ]
+"351
+[; ;app.c: 351:     temp = Num2;
+[e = _temp _Num2 ]
+"352
+[; ;app.c: 352:     remainder = 0; i = 0;
+[e = _remainder -> -> 0 `i `uc ]
+[e = _i -> -> 0 `i `uc ]
+"353
+[; ;app.c: 353:     while(temp)
+[e $U 376  ]
+[e :U 377 ]
+"354
+[; ;app.c: 354:     {
+{
+"355
+[; ;app.c: 355:       remainder = temp%10;
+[e = _remainder -> % _temp -> -> -> 10 `i `o `uo `uc ]
+"356
+[; ;app.c: 356:       temp /= 10;
+[e =/ _temp -> -> -> 10 `i `o `uo ]
+"357
+[; ;app.c: 357:       Dec2 += remainder * a_power_b(2, i);
+[e =+ _Dec2 * -> _remainder `ui ( _a_power_b (2 , -> -> 2 `i `uc _i ]
+"358
+[; ;app.c: 358:       ++i;
+[e =+ _i -> -> 1 `i `uc ]
+"359
+[; ;app.c: 359:     }
+}
+[e :U 376 ]
+"353
+[; ;app.c: 353:     while(temp)
+[e $ != _temp -> -> -> 0 `i `o `uo 377  ]
+[e :U 378 ]
+"360
+[; ;app.c: 360:     switch(Operator){
+[e $U 380  ]
+{
+"361
+[; ;app.c: 361:         case '+':
+[e :U 381 ]
+"362
+[; ;app.c: 362:             Num = Dec1 + Dec2;
+[e = _Num -> + _Dec1 _Dec2 `uo ]
+"363
+[; ;app.c: 363:             break;
+[e $U 379  ]
+"364
+[; ;app.c: 364:         case '-':
+[e :U 382 ]
+"365
+[; ;app.c: 365:             Num = Dec1 - Dec2;
+[e = _Num -> - _Dec1 _Dec2 `uo ]
+"366
+[; ;app.c: 366:             break;
+[e $U 379  ]
+"367
+[; ;app.c: 367:         case '*':
+[e :U 383 ]
+"368
+[; ;app.c: 368:             Num = Dec1 * Dec2;
+[e = _Num -> * _Dec1 _Dec2 `uo ]
+"369
+[; ;app.c: 369:             break;
+[e $U 379  ]
+"370
+[; ;app.c: 370:         case '/':
+[e :U 384 ]
+"371
+[; ;app.c: 371:             Num = Dec1 / Dec2;
+[e = _Num -> / _Dec1 _Dec2 `uo ]
+"372
+[; ;app.c: 372:             break;
+[e $U 379  ]
+"373
+[; ;app.c: 373:     }
+}
+[e $U 379  ]
+[e :U 380 ]
+[e [\ -> _Operator `i , $ -> -> 43 `ui `i 381
+ , $ -> -> 45 `ui `i 382
+ , $ -> -> 42 `ui `i 383
+ , $ -> -> 47 `ui `i 384
+ 379 ]
+[e :U 379 ]
+"374
+[; ;app.c: 374:     uint8 conversion_arr[65];
+[v _conversion_arr `uc ~T0 @X0 -> 65 `i a ]
+"375
+[; ;app.c: 375:     i = 0;
+[e = _i -> -> 0 `i `uc ]
+"376
+[; ;app.c: 376:     temp = Num;
+[e = _temp _Num ]
+"377
+[; ;app.c: 377:     while(temp){
+[e $U 385  ]
+[e :U 386 ]
+{
+"378
+[; ;app.c: 378:         if('3' == mode)
+[e $ ! == -> 51 `ui -> _mode `ui 388  ]
+"379
+[; ;app.c: 379:         {
+{
+"380
+[; ;app.c: 380:             conversion_arr[i] = temp % 2;
+[e = *U + &U _conversion_arr * -> _i `ux -> -> # *U &U _conversion_arr `ui `ux -> % _temp -> -> -> 2 `i `o `uo `uc ]
+"381
+[; ;app.c: 381:             temp = temp / 2;
+[e = _temp / _temp -> -> -> 2 `i `o `uo ]
+"382
+[; ;app.c: 382:         }
+}
+[e $U 389  ]
+"383
+[; ;app.c: 383:         else
+[e :U 388 ]
+"384
+[; ;app.c: 384:         {
+{
+"385
+[; ;app.c: 385:             conversion_arr[i] = temp % 8;
+[e = *U + &U _conversion_arr * -> _i `ux -> -> # *U &U _conversion_arr `ui `ux -> % _temp -> -> -> 8 `i `o `uo `uc ]
+"386
+[; ;app.c: 386:             temp = temp / 8;
+[e = _temp / _temp -> -> -> 8 `i `o `uo ]
+"387
+[; ;app.c: 387:         }
+}
+[e :U 389 ]
+"388
+[; ;app.c: 388:         i++;
+[e ++ _i -> -> 1 `i `uc ]
+"389
+[; ;app.c: 389:     }
+}
+[e :U 385 ]
+"377
+[; ;app.c: 377:     while(temp){
+[e $ != _temp -> -> -> 0 `i `o `uo 386  ]
+[e :U 387 ]
+"390
+[; ;app.c: 390:     for (int j = i - 1; j >= 0; j--)
+{
+[v _j `i ~T0 @X0 1 a ]
+[e = _j - -> _i `i -> 1 `i ]
+[e $ >= _j -> 0 `i 390  ]
+[e $U 391  ]
+[e :U 390 ]
+"391
+[; ;app.c: 391:     {
+{
+"392
+[; ;app.c: 392:       if(j==i-1){
+[e $ ! == _j - -> _i `i -> 1 `i 393  ]
+{
+"393
+[; ;app.c: 393:       Num = conversion_arr[j];
+[e = _Num -> *U + &U _conversion_arr * -> -> _j `ui `ux -> -> # *U &U _conversion_arr `ui `ux `uo ]
+"394
+[; ;app.c: 394:       }
+}
+[e $U 394  ]
+"395
+[; ;app.c: 395:       else {
+[e :U 393 ]
+{
+"396
+[; ;app.c: 396:         Num = Num * 10 + conversion_arr[j];
+[e = _Num + * _Num -> -> -> 10 `i `o `uo -> *U + &U _conversion_arr * -> -> _j `ui `ux -> -> # *U &U _conversion_arr `ui `ux `uo ]
+"397
+[; ;app.c: 397:       }
+}
+[e :U 394 ]
+"398
+[; ;app.c: 398:     }
+}
+[e -- _j -> 1 `i ]
+[e $ >= _j -> 0 `i 390  ]
+[e :U 391 ]
+}
+"399
+[; ;app.c: 399:     ret = lcd_4bit_set_cursor(&lcd, 1, 2);
+[e = _ret ( _lcd_4bit_set_cursor (3 , , -> &U _lcd `*CS276 -> -> 1 `i `uc -> -> 2 `i `uc ]
+"400
+[; ;app.c: 400:     ret = lcd_4bit_print_int(&lcd, Num);
+[e = _ret ( _lcd_4bit_print_int (2 , -> &U _lcd `*CS276 _Num ]
+"401
+[; ;app.c: 401: }
+[e :UE 370 ]
+}
+"403
+[; ;app.c: 403: uint16 a_power_b(uint8 a, uint8 b){
+[v _a_power_b `(ui ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _a_power_b ]
+[v _a `uc ~T0 @X0 1 r1 ]
+[v _b `uc ~T0 @X0 1 r2 ]
+[f ]
+"404
+[; ;app.c: 404:     uint16 ans = 1;
+[v _ans `ui ~T0 @X0 1 a ]
+[e = _ans -> -> 1 `i `ui ]
+"405
+[; ;app.c: 405:     for (int i = 0; i < b; i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 399  ]
+[e :U 396 ]
+"406
+[; ;app.c: 406:     {
+{
+"407
+[; ;app.c: 407:         ans *= a;
+[e =* _ans -> _a `ui ]
+"408
+[; ;app.c: 408:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 399 ]
+[e $ < _i -> _b `i 396  ]
+[e :U 397 ]
+}
+"409
+[; ;app.c: 409:     return ans;
+[e ) _ans ]
+[e $UE 395  ]
+"410
+[; ;app.c: 410: }
+[e :UE 395 ]
+}
+[a 2C 49 45 32 68 101 99 32 32 32 50 45 32 79 99 116 0 ]
+[a 3C 32 32 32 32 32 51 45 32 66 105 110 0 ]
+[a 6C 32 32 66 105 110 97 114 121 32 77 111 100 101 32 32 0 ]
+[a 1C 32 32 68 101 99 105 109 97 108 32 77 111 100 101 32 32 0 ]
+[a 4C 32 32 68 101 99 105 109 97 108 32 77 111 100 101 32 32 0 ]
+[a 5C 32 32 32 79 99 116 97 108 32 77 111 100 101 32 32 32 0 ]
