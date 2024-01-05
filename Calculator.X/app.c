@@ -285,9 +285,18 @@ void calculate_results_decimal(void){
             ret = lcd_4bit_print_int(&lcd, Num);
             break;
         case '/':
-            Num = Num1 / Num2;
-            ret = lcd_4bit_set_cursor(&lcd, 1, 2);
-            ret = lcd_4bit_print_int(&lcd, Num);
+            if(ZERO == Num2)
+            {
+                ret = lcd_4bit_send_command(&lcd, LCD_CLEAR_DISPLAY);
+                __delay_ms(10);
+                ret = lcd_4bit_print_string(&lcd, "Math Error");
+            }
+            else
+            {
+                Num = Num1 / Num2;
+                ret = lcd_4bit_set_cursor(&lcd, 1, 2);
+                ret = lcd_4bit_print_int(&lcd, Num);
+            }
             break;
     }
 }
@@ -357,7 +366,15 @@ void calculate_results_binary_octal(void)
       Dec2 += remainder * a_power_b(2, i);
       ++i;
     }
-    switch(Operator){
+    if(ZERO == Dec2 && '/' == Operator)
+    {
+        ret = lcd_4bit_send_command(&lcd, LCD_CLEAR_DISPLAY);
+        __delay_ms(10);
+        ret = lcd_4bit_print_string(&lcd, "Math Error");
+    }
+    else
+    {
+     switch(Operator){
         case '+':
             Num = Dec1 + Dec2;
             break;
@@ -397,7 +414,8 @@ void calculate_results_binary_octal(void)
       }
     }
     ret = lcd_4bit_set_cursor(&lcd, 1, 2);
-    ret = lcd_4bit_print_int(&lcd, Num);
+    ret = lcd_4bit_print_int(&lcd, Num);   
+    }
 }
 
 uint16 a_power_b(uint8 a, uint8 b){
